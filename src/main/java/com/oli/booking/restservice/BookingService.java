@@ -2,9 +2,12 @@ package com.oli.booking.restservice;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.stereotype.Service;
 
 import com.oli.booking.models.Booking;
 import com.oli.booking.models.enums.Currency;
@@ -13,6 +16,7 @@ import com.oli.booking.models.response.CreatedBooking;
 import com.oli.booking.utility.EmailMock;
 import com.oli.booking.utility.TransactionMock;
 
+@Service
 public class BookingService {
     // Map of bookingId and Booking
     Map<String, Booking> bookingMap = new HashMap<String, Booking>();
@@ -33,7 +37,7 @@ public class BookingService {
 
     public List<String> getBookingIdsByDepartment(Department department) {
         List<String> bookingIds = new ArrayList<String>();
-        List<Booking> bookings = (List<Booking>) bookingMap.values();
+        Collection<Booking> bookings = bookingMap.values();
         for (Booking booking : bookings) {
             if (booking.getDepartment() == department) {
                 bookingIds.add(booking.getBookingId());
@@ -44,7 +48,7 @@ public class BookingService {
 
     public List<Currency> getBookingCurrencyList() {
         List<Currency> currencies = new ArrayList<Currency>();
-        List<Booking> bookings = (List<Booking>) bookingMap.values();
+        Collection<Booking> bookings= bookingMap.values();
         for (Booking booking : bookings) {
             if (!currencies.contains(booking.getCurrency())) {
                 currencies.add(booking.getCurrency());
@@ -55,7 +59,7 @@ public class BookingService {
 
     public String getBookingHash(String transactionId) throws Exception {
         CreatedBooking createdBooking = transactionMap.get(transactionId);
-        if (createdBooking.hash() == TransactionMock.getBookingHash(bookingMap.get(createdBooking.bookingId()))) {
+        if (createdBooking.hash().equals(TransactionMock.getBookingHash(bookingMap.get(createdBooking.bookingId())))) {
             return createdBooking.hash();
         } else {
             throw new Exception("Hash doesn't match with original booking");
@@ -68,7 +72,7 @@ public class BookingService {
     }
 
     public float getSumOfBookingsByCurrency(Currency currency) {
-        List<Booking> bookings = (List<Booking>) bookingMap.values();
+        Collection<Booking> bookings =  bookingMap.values();
         float sum = (float) 0.0;
         for (Booking booking : bookings) {
             float conversionRate = (float) 0.0;

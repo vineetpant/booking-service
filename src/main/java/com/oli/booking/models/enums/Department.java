@@ -8,7 +8,7 @@ public enum Department {
     RESEARCH;
 
     public String doBussiness(Booking booking) {
-        return "Your booking order for " + booking.getPrice() + booking.getCurrency() + " received by "
+        return "Your booking order for " + booking.getPrice() + " "+booking.getCurrency() + " received by "
                 + this.toString();
     }
 }

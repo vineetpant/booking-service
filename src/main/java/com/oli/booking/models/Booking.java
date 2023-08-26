@@ -2,10 +2,11 @@ package com.oli.booking.models;
 
 import java.util.Date;
 import java.util.UUID;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.oli.booking.models.enums.Currency;
 import com.oli.booking.models.enums.Department;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Booking {
     String bookingId;
     String description;
@@ -15,6 +16,7 @@ public class Booking {
     String email;
     Department department;
 
+    public Booking(){}
     public Booking(
             String description,
             Float price,
@@ -85,6 +87,14 @@ public class Booking {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingId='" + bookingId + '\'' +
+                ", subscriptionStartDate=" + subscriptionStartDate +
+                '}';
     }
 
 }

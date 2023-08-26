@@ -17,3 +17,8 @@ Source code contains `BookingsController` which creates endpoint mappings and pa
 
 For data structures code uses `HashMap`'s to store `Bookings` and `Transaction` Detials. Due to some time constraints and other occupancies the onchain transaction is currently mocked and it just return booking hash and a random transactionId which are stored in `HashMap` for resolving get queries in run time. 
 
+### Swagger UI
+
+Swagger UI can be accessed `http://localhost:8080/swagger-ui/index.html`
+
+

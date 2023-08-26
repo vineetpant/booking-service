@@ -1,6 +1,7 @@
 package com.oli.booking.restservice;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,6 +27,7 @@ public class BookingsController {
     @PostMapping(path = "/bookings")
     public CreatedBooking createBooking(@RequestBody Booking booking) throws Exception {
         try {
+            booking.setBookingId(UUID.randomUUID().toString());
             return bookingService.createOrUpdate(booking);
         } catch (Exception e) {
             throw new Exception("Error Occured " + e.getMessage());

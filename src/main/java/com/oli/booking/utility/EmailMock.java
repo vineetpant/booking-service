@@ -4,12 +4,12 @@ import java.util.Properties;
 import com.oli.booking.models.Booking;
 import com.oli.booking.models.response.CreatedBooking;
 
-import jakarta.mail.Message;
-import jakarta.mail.MessagingException;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class EmailMock {
     public static void sendEmail(Booking booking, CreatedBooking createdBooking) {
@@ -35,7 +35,7 @@ public class EmailMock {
             message.setText(mailMessage);
 
             // Send message
-            Transport.send(message);
+            // Transport.send(message);
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
