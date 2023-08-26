@@ -22,3 +22,11 @@ For data structures code uses `HashMap`'s to store `Bookings` and `Transaction` 
 Swagger UI can be accessed `http://localhost:8080/swagger-ui/index.html`
 
 
+### Sample booking request
+POST /bookingservice/bookings
+Sample Body:
+
+```
+{"description": "Cool descripƟon!", "price": 50.00, "currency": "USD",
+"subscription_start_date": 683124845000, "email": "valid@email.ok", "department": "ADMIN"}
+```

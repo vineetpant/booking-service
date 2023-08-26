@@ -3,6 +3,7 @@ package com.oli.booking.models;
 import java.util.Date;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.oli.booking.models.enums.Currency;
 import com.oli.booking.models.enums.Department;
 
@@ -12,6 +13,7 @@ public class Booking {
     String description;
     Float price;
     Currency currency;
+    @JsonProperty("subscription_start_date")
     Date subscriptionStartDate;
     String email;
     Department department;
