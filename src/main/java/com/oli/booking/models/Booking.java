@@ -9,6 +9,7 @@ import com.oli.booking.models.enums.Department;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Booking {
+    @JsonProperty("booking_id")
     String bookingId;
     String description;
     Float price;
