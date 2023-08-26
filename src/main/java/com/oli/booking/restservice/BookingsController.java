@@ -2,6 +2,7 @@ package com.oli.booking.restservice;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +20,10 @@ import com.oli.booking.models.response.CreatedBooking;
 @RestController
 @RequestMapping(path = "/bookingservice", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BookingsController {
-    BookingService bookingService = new BookingService();
+    @Autowired
+    BookingService bookingService;
 
-    @PostMapping(path = "/booking")
+    @PostMapping(path = "/bookings")
     public CreatedBooking createBooking(@RequestBody Booking booking) throws Exception {
         try {
             return bookingService.createOrUpdate(booking);
@@ -30,7 +32,7 @@ public class BookingsController {
         }
     }
 
-    @PutMapping(path = "/booking/{booking_id}")
+    @PutMapping(path = "/bookings/{bookingId}")
     public CreatedBooking updateBooking(
             @PathVariable String bookingId,
             @RequestBody Booking booking) throws Exception {
@@ -42,12 +44,12 @@ public class BookingsController {
         }
     }
 
-    @GetMapping("/bookings/{booking_id}")
+    @GetMapping("/bookings/{bookingId}")
     public Booking getBookingById(@PathVariable String bookingId) {
         return bookingService.getBooking(bookingId);
     }
 
-    @GetMapping("/bookings/department/{department} ")
+    @GetMapping("/bookings/department/{department}")
     public List<String> getBookingIdsByDepartment(@PathVariable Department department) {
         return bookingService.getBookingIdsByDepartment(department);
     }
@@ -62,12 +64,12 @@ public class BookingsController {
         return bookingService.getSumOfBookingsByCurrency(currency);
     }
 
-    @GetMapping("/bookings/proof/{transaction_id}")
+    @GetMapping("/bookings/proof/{transactionId}")
     public String getBookingHash(@PathVariable String transactionId) throws Exception {
         return bookingService.getBookingHash(transactionId);
     }
 
-    @GetMapping("/bookings/dobusiness/{booking_id}")
+    @GetMapping("/bookings/dobusiness/{bookingId}")
     public String getDoBussiness(@PathVariable String bookingId) {
         return bookingService.doBussiness(bookingId);
     }
